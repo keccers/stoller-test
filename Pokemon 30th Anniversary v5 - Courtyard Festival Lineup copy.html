@@ -1,0 +1,1470 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pokémon 30th Anniversary – Courtyard Festival Lineup</title>
+
+  <!-- Game Boy-ish font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --courtyard-blue:#0b5ad0;
+      --text:#eaf0ff;
+      --muted:rgba(234,240,255,.78);
+
+      --headerH: 150px;
+      --bottomFrameH: 68px;
+
+      /* Wider desktop layout */
+      --maxW: 1460px;
+
+      --colGap: 14px;
+
+      --scrollTrack: rgba(255,255,255,.06);
+      --scrollThumb: rgba(255,255,255,.18);
+
+      --highlightYellow: #ffd84d;
+      --highlightText: #0a0c12;
+
+      --cardTop: rgba(255,255,255,.18);
+      --cardBot: rgba(255,255,255,.12);
+      --cardBorder: rgba(255,255,255,.22);
+
+      --gbFont: "Press Start 2P", system-ui, sans-serif;
+
+      /* Background images */
+      --gbBgUrl: url("https://braze-images.com/appboy/communication/assets/image_assets/images/698624bc10d71900726d6575/original.jpg?1770398907");
+      --topBgUrl: url("https://braze-images.com/appboy/communication/assets/image_assets/images/69860cdf1357e70063e06071/original.jpg?1770392798");
+
+      /* Divider between top + main */
+      --dividerUrl: url("https://braze-images.com/appboy/communication/assets/image_assets/images/698615d46ef71700656f4552/original.jpg?1770395091");
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      color:var(--text);
+      background:
+        radial-gradient(1200px 700px at 15% 10%, rgba(11,90,208,.20), transparent 55%),
+        radial-gradient(900px 500px at 80% 20%, rgba(167,139,250,.14), transparent 55%),
+        linear-gradient(180deg, #070a14 0%, #050712 40%, #040515 100%);
+      overflow-x:hidden;
+      padding-bottom: var(--bottomFrameH);
+    }
+
+    /* ✅ Main page background: Game Boy screen, LESS dim (more obvious) */
+    body:after{
+      content:"";
+      position:fixed; inset:0;
+      background-image: var(--gbBgUrl);
+      background-size: cover;
+      background-position: center;
+      opacity:.80; /* was .12 */
+      pointer-events:none;
+      z-index:-3;
+    }
+    /* Keep subtle vignetting but lighter than before */
+    body:before{
+      content:"";
+      position:fixed; inset:0;
+      background:
+        radial-gradient(900px 650px at 40% 10%, rgba(0,0,0,.36), transparent 62%),
+        radial-gradient(1000px 700px at 70% 90%, rgba(0,0,0,.40), transparent 62%);
+      pointer-events:none;
+      z-index:-2;
+    }
+
+    a{color:inherit}
+
+    /* Highlight pill */
+    .hl{
+      background: var(--highlightYellow);
+      color: var(--highlightText);
+      padding: 6px 12px;
+      border-radius: 10px;
+      box-shadow: 0 10px 22px rgba(255,216,77,.12);
+      display:inline-block;
+      line-height: 1.25;
+    }
+
+    /* ===== Sticky Top ===== */
+    .topShell{
+      position:sticky;
+      top:0;
+      z-index:50;
+      border-bottom: 1px solid rgba(0,0,0,.12);
+
+      /* ✅ Top area gets its own background image, only lightly dimmed */
+      background-image: var(--topBgUrl);
+      background-size: cover;
+      background-position: center;
+    }
+    /* light dim + blur overlay */
+    .topShell:before{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.75) 0%, rgba(255,255,255,.10) 55%, rgba(255,255,255,0) 100%);
+      backdrop-filter: blur(12px);
+      pointer-events:none;
+      z-index:0;
+    }
+    .topShell > *{position:relative; z-index:1;}
+
+    /* ✅ make top content as wide as main content area */
+    .wrap{
+      max-width: var(--maxW);
+      margin:0 auto;
+      padding: 14px 18px 0;
+    }
+
+    /* ✅ Status row uses GB font and black text now */
+    .infoRow{
+      font-family: var(--gbFont);
+      display:flex;
+      gap:14px;
+      align-items:center;
+      flex-wrap:wrap;
+      color: rgba(0,0,0,.88); /* ✅ black */
+      font-size:11px;
+      line-height:1.4;
+      padding: 8px 0 12px;
+      text-shadow: none;
+      justify-content: center; /* ✅ center as a group */
+    }
+    .infoItem{display:inline-flex; gap:10px; align-items:center; font-weight:400;}
+    .dot{width:9px;height:9px;border-radius:99px;background:var(--courtyard-blue); box-shadow:0 0 0 4px rgba(11,90,208,.18);}
+    .infoSep{width: 6px; height: 6px; border-radius: 99px; background: rgba(0,0,0,.22); opacity:.9;}
+
+    /* Header image shows entire image */
+    .heroImg{
+      width:100%;
+      height: var(--headerH);
+      overflow:hidden;
+      position:relative;
+      border:none;
+      border-radius: 0;
+      box-shadow: none;
+    }
+    .heroImg img{
+      width:100%;
+      height:100%;
+      object-fit: contain;
+      object-position: center;
+      display:block;
+    }
+
+    header{
+      display:flex;
+      gap:16px;
+      align-items:flex-start;
+      justify-content: center; /* ✅ center header content */
+      flex-wrap:wrap;
+      margin-top:14px;
+      padding-bottom: 10px;
+    }
+
+    .brandRow{
+      display:flex;
+      gap:14px;
+      align-items:flex-start;
+      min-width: 0;                 /* ✅ prevents left bias */
+      width: 100%;
+      max-width: var(--maxW);        /* ✅ same as main content */
+      justify-content: center;       /* ✅ truly centered */
+    }
+
+    /* ✅ Courtyard logo: remove radius + border, present normally */
+    .logoImg{
+      width:52px; height:52px;
+      border-radius: 0;     /* ✅ */
+      border: none;         /* ✅ */
+      box-shadow: none;     /* ✅ */
+      object-fit: contain;
+      flex: 0 0 auto;
+      background: transparent;
+      opacity: 1;
+      filter: none;
+    }
+
+    .titles{
+      width: 100%;
+      max-width: 1200px;             /* ✅ keeps block centered visually */
+      min-width: 0;
+    }
+
+    /* ✅ Gentle stroke + shadow on title area */
+    .titleArea{
+      
+    }
+
+    h1{
+     font-family: var(--gbFont);
+		margin:0;
+      font-size: clamp(20px, 3.2vw, 30px);
+      letter-spacing:-.02em;
+      line-height:1.28;
+      font-weight: 650;
+      color: rgba(255,255,255,.96);
+    }
+
+    /* ✅ sub text: no stroke/shadow, make black */
+    .sub{
+      margin-top:12px;
+      line-height:1.45;
+      font-size:16px;
+      max-width:78ch;
+      font-weight:400;
+      color: rgba(0,0,0,.80); /* ✅ black */
+      text-shadow: none;
+      -webkit-text-stroke: 0;
+    }
+    .sub .mono{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+
+    /* centered buttons */
+    .actions{
+      width:100%;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      align-items:center;
+      justify-content:center;
+      margin-top:12px;
+    }
+    .actionsRow{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      justify-content:center;
+      width:100%;
+      flex-wrap:wrap;
+    }
+
+    /* Buttons use Game Boy font */
+    .btn{
+      font-family: var(--gbFont);
+      appearance:none;
+      border:1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      border-radius: 16px;
+      padding: 14px 14px;
+      cursor:pointer;
+      display:inline-flex;
+      gap:10px;
+      align-items:center;
+      font-weight: 400;
+      transition: transform .08s ease, background .15s ease, border-color .15s ease;
+      box-shadow: 0 10px 24px rgba(0,0,0,.20);
+      user-select:none;
+      justify-content:center;
+      min-height: 54px;
+      font-size: 11px;
+      white-space:nowrap;
+      min-width: 220px;
+      flex: 1 1 220px;
+      max-width: 320px;
+      letter-spacing: .02em;
+    }
+    .btn:hover{background: rgba(255,255,255,.10); border-color: rgba(255,255,255,.24)}
+    .btn:active{transform: translateY(1px)}
+    .btnShare{
+      background: linear-gradient(135deg, rgba(11,90,208,.95) 0%, rgba(11,90,208,.70) 55%, rgba(167,139,250,.65) 115%);
+    }
+    .btnNotify{
+      background: linear-gradient(135deg, rgba(34,197,94,.90) 0%, rgba(52,211,153,.72) 55%, rgba(16,185,129,.60) 115%);
+      box-shadow: 0 12px 30px rgba(34,197,94,.18), 0 10px 24px rgba(0,0,0,.20);
+    }
+    .btnBlog{
+      background: linear-gradient(135deg, rgba(245,158,11,.95) 0%, rgba(251,146,60,.78) 55%, rgba(250,204,21,.60) 120%);
+      color: rgba(255,255,255,.96);
+      border-color: rgba(255,255,255,.14);
+      box-shadow: 0 12px 30px rgba(251,146,60,.18), 0 10px 24px rgba(0,0,0,.20);
+    }
+    .kbd{
+      font-family: var(--gbFont);
+      font-size:9px;
+      opacity:.92;
+      padding:6px 8px;
+      border:1px solid rgba(255,255,255,.20);
+      border-bottom-color: rgba(255,255,255,.12);
+      border-radius: 10px;
+      background: rgba(0,0,0,.22);
+      font-weight: 400;
+      letter-spacing: .02em;
+    }
+    .hint{
+      font-family: var(--gbFont);
+      font-size:10px;
+      color: rgba(0,0,0,.78); /* ✅ black, on light top bg */
+      line-height:1.35;
+      text-align:center;
+      max-width: 66ch;
+      font-weight: 400;
+      letter-spacing: .02em;
+    }
+
+    /* Stage pills moved to top, GB font */
+    .topStages{
+      width:100%;
+      display:flex;
+      gap:10px;
+      justify-content:center;
+      align-items:center;
+      flex-wrap:wrap;
+      margin-top: 2px;
+      padding-bottom: 2px;
+    }
+    .stagePill{
+      font-family: var(--gbFont);
+      font-size: 9.5px;
+      letter-spacing: .02em;
+      padding: 10px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(0,0,0,.18);
+      background: rgba(255,255,255,.28);
+      box-shadow: 0 10px 22px rgba(0,0,0,.12);
+      user-select:none;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      text-transform: uppercase;
+      color: rgba(0,0,0,.82);
+    }
+    .stagePill .sw{width:10px;height:10px;border-radius:4px; display:inline-block;}
+    .stagePill.drops .sw{background: rgba(52,211,153,1)}
+    .stagePill.product .sw{background: rgba(251,113,133,1)}
+    .stagePill.raffle .sw{background: rgba(167,139,250,1)}
+
+    /* ===== Live feed tile ===== */
+    .liveThumbBtn{
+      font-family: var(--gbFont);
+      appearance:none;
+      border:1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.04);
+      border-radius: 18px;
+      padding: 0;
+      cursor:pointer;
+      box-shadow: 0 10px 24px rgba(0,0,0,.22);
+      overflow:hidden;
+      transition: transform .10s ease, border-color .15s ease, background .15s ease;
+      user-select:none;
+      width: 240px;
+      height: 72px;
+      position:relative;
+      flex: 0 0 auto;
+    }
+    .liveThumbBtn:hover{transform: translateY(-1px); border-color: rgba(255,255,255,.26)}
+    .liveThumbBtn:active{transform: translateY(1px)}
+    .liveThumbInner{width:100%; height:100%; position:relative;}
+    .liveThumbInner iframe{width:100%; height:100%; border:0; display:block; background: rgba(0,0,0,.25);}
+
+    .liveCropMask{
+      position:absolute; inset:0;
+      pointer-events:none;
+      display:none;
+      place-items:center;
+    }
+    .liveCropMask.show{display:grid;}
+    .cropWindow{
+      width:200px;
+      height:200px;
+      border-radius: 16px;
+      overflow:hidden;
+      border: 1px solid rgba(255,255,255,.18);
+      box-shadow: 0 18px 40px rgba(0,0,0,.35);
+      background: rgba(0,0,0,.22);
+    }
+    .cropWindow iframe{
+      width: 1000px;
+      height: 1000px;
+      border:0;
+      transform: translate(-400px, -400px);
+    }
+
+    .liveOverlayUI{
+      position:absolute; inset:0;
+      pointer-events:none;
+      display:flex;
+      align-items:center;
+      justify-content:flex-end;
+      padding: 10px 12px;
+      gap:10px;
+    }
+    .livePill{
+      font-family: var(--gbFont);
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(0,0,0,.42);
+      border: 1px solid rgba(255,255,255,.16);
+      backdrop-filter: blur(10px);
+      color: rgba(234,240,255,.92);
+      font-size: 9.5px;
+      font-weight: 400;
+      letter-spacing: .02em;
+    }
+    .liveDot{
+      width:9px;height:9px;border-radius:99px;
+      background: #ff3b30;
+      box-shadow: 0 0 0 4px rgba(255,59,48,.14);
+    }
+    .livePlay{
+      width:28px;height:28px;
+      border-radius: 12px;
+      background: rgba(255,255,255,.10);
+      border: 1px solid rgba(255,255,255,.16);
+      display:grid;
+      place-items:center;
+    }
+    .livePlay svg{opacity:.92}
+
+    /* ✅ Live feed click reliability overlay */
+    .liveThumbBtn{position:relative;}
+    .liveLinkOverlay{
+      position:absolute;
+      inset:0;
+      z-index: 5;
+      display:block;
+      text-decoration:none;
+    }
+
+    @media (max-width: 860px){
+      .btn{max-width:none; width:100%;}
+      .liveThumbBtn{width: min(520px, 100%); height: 160px;}
+      .cropWindow{width: 220px; height: 220px;}
+    }
+
+    /* ===== Divider between top and scroll area ===== */
+    .sectionDivider{
+      width: 100%;
+      height: 1px;
+      background-image: var(--dividerUrl);
+		 background:
+        linear-gradient(180deg, rgba(255,255,255,.75) 0%, rgba(255,255,255,.10) 55%, rgba(255,255,255,0) 100%);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      border-top: 1px solid rgba(0,0,0,.12);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    @media (max-width: 860px){
+      .sectionDivider{height: 18px;}
+      :root{ --headerH: 92px; } /* ✅ mobile top area does not hog space */
+      .wrap{padding-top: 10px;}
+      .infoRow{padding-bottom: 8px;}
+      header{margin-top: 10px;}
+      .sub{font-size: 14px;}
+      .actions{gap: 10px;}
+    }
+
+    /* ===== Scroll Area ===== */
+    .scrollShell{max-width: var(--maxW); margin:0 auto; padding: 0 18px 0;}
+    .timelineScroll{
+      height: calc(100vh - 420px - var(--bottomFrameH));
+      min-height: 280px;
+      max-height: calc(100vh - var(--bottomFrameH) - 10px);
+      overflow:auto;
+      padding: 14px 0 18px;
+      scrollbar-gutter: stable;
+      scrollbar-width: thin;
+      scrollbar-color: var(--scrollThumb) var(--scrollTrack);
+    }
+    .timelineScroll::-webkit-scrollbar{width: 10px}
+    .timelineScroll::-webkit-scrollbar-track{
+      background: rgba(255,255,255,.05);
+      border-left: 1px solid rgba(255,255,255,.06);
+    }
+    .timelineScroll::-webkit-scrollbar-thumb{
+      background: rgba(255,255,255,.18);
+      border-radius: 999px;
+      border: 2px solid rgba(0,0,0,.35);
+    }
+    .timelineScroll::-webkit-scrollbar-thumb:hover{background: rgba(255,255,255,.28)}
+
+    /* Day + cards */
+    .day{
+      margin: 18px 0 26px;
+      background: transparent;
+		
+      border: none;
+      box-shadow: none;
+      overflow: visible;
+      position:relative;
+    }
+    .dayHeader{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding: 0 0 10px;
+      background: transparent;
+      border: none;
+      position:sticky;
+      top:0;
+      z-index: 10;
+      backdrop-filter: blur(10px);
+    }
+    .dayTitle{
+      margin:0;
+      font-size:13px;
+      font-family: var(--gbFont);
+      font-weight: 400;
+      letter-spacing:.02em;
+      color: rgba(234,240,255,.92);
+      text-shadow: 0 2px 10px rgba(0,0,0,.30);
+    }
+    .daySub{
+      color: rgba(234,240,255,.78);
+      font-size:10px;
+      margin-top:6px;
+      line-height:1.25;
+      font-family: var(--gbFont);
+      font-weight:400;
+      letter-spacing:.02em;
+      text-shadow: 0 2px 10px rgba(0,0,0,.30);
+    }
+
+    .cols{
+      display:grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: var(--colGap);
+      align-items:start;
+    }
+    .stack{
+      display:flex;
+      flex-direction:column;
+      gap: 12px;
+      padding: 0;
+      background: transparent;
+      border: none;
+    }
+    .stack.isEmpty{display:none;}
+    @media (max-width: 980px){
+      .cols{grid-template-columns: 1fr;}
+    }
+
+    .card{
+      border-radius: 18px;
+      border: 1px solid var(--cardBorder);
+      background: linear-gradient(180deg, var(--cardTop) 0%, var(--cardBot) 100%);
+      box-shadow: 0 12px 30px rgba(0,0,0,.22);
+      padding: 12px;
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+      cursor:pointer;
+      transition: transform .10s ease, border-color .15s ease, background .15s ease;
+      overflow:hidden;
+      user-select:none;
+      position:relative;
+      font-weight: 400;
+      backdrop-filter: blur(6px);
+    }
+    .card:hover{transform: translateY(-1px); border-color: rgba(255,255,255,.30)}
+    .card:active{transform: translateY(1px)}
+    .card:before{content:""; position:absolute; left:0; top:0; bottom:0; width:6px;}
+    .card.stage1:before{background: linear-gradient(180deg, rgba(52,211,153,1), rgba(52,211,153,.35))}
+    .card.stage2:before{background: linear-gradient(180deg, rgba(251,113,133,1), rgba(251,113,133,.35))}
+    .card.stage3:before{background: linear-gradient(180deg, rgba(167,139,250,1), rgba(167,139,250,.35))}
+
+    /* GO button style (no pill) */
+    .thumb{
+      width:56px; height:56px;
+      border-radius: 14px;
+      border: 0;
+      background: transparent;
+      box-shadow: none;
+      position:relative;
+      overflow:visible;
+      flex: 0 0 auto;
+      display:grid;
+      place-items:center;
+    }
+    .goBtn{
+      width:56px;
+      height:56px;
+      border-radius: 14px;
+      background: #0b0f1b;
+      border: 2px solid rgba(255,216,77,.92);
+      box-shadow: 0 10px 18px rgba(0,0,0,.30);
+      display:grid;
+      place-items:center;
+      position:relative;
+      overflow:hidden;
+    }
+    .goBtn:before{
+      content:"";
+      position:absolute; inset:-2px;
+      background: linear-gradient(135deg, rgba(255,216,77,.35), rgba(251,146,60,.15));
+      opacity:.75;
+      pointer-events:none;
+    }
+    .goBtn span{
+      position:relative;
+      font-family: var(--gbFont);
+      font-size: 12px;
+      letter-spacing: .08em;
+      color: rgba(255,216,77,1);
+      text-shadow: 0 2px 0 rgba(0,0,0,.55);
+      transform: translateY(1px);
+      user-select:none;
+    }
+
+    .meta{min-width:0; flex: 1 1 auto;}
+    .when{
+      font-family: var(--gbFont);
+      display:flex; gap:10px; flex-wrap:wrap; align-items:center;
+      font-size:10px;
+      color: rgba(234,240,255,.92);
+      margin-bottom:10px;
+      font-weight:400;
+      letter-spacing:.02em;
+      line-height: 1.35;
+    }
+    .timeChip{
+      font-size:10px;
+      font-weight:400;
+      padding:6px 8px;
+      border-radius: 10px;
+      background: rgba(0,0,0,.24);
+      border: 1px solid rgba(255,255,255,.16);
+    }
+    .badge{
+      font-family: var(--gbFont);
+      font-size:9.5px;
+      padding:6px 8px;
+      border-radius: 10px;
+      border:1px solid rgba(255,255,255,.16);
+      background: rgba(0,0,0,.20);
+      color: rgba(234,240,255,.92);
+      font-weight: 400;
+      letter-spacing:.02em;
+    }
+    .badge.live{border-color: rgba(34,197,94,.60); background: rgba(34,197,94,.18)}
+    .badge.soon{border-color: rgba(251,191,36,.60); background: rgba(251,191,36,.16)}
+    .badge.done{border-color: rgba(239,68,68,.55); background: rgba(239,68,68,.14)}
+
+    .title{
+      margin:0;
+      font-size:24px;
+      line-height:1.15;
+      font-weight:900;
+      letter-spacing:-.02em;
+      display:inline-block;
+      color: rgba(0,0,0,.96);
+    }
+    .desc{margin:9px 0 0; font-size:14.5px; line-height:1.4; color: rgba(234,240,255,.78); font-weight: 400;}
+
+    .cardActions{margin-top:12px; display:flex; gap:8px; align-items:center; flex-wrap:wrap;}
+    .linkBtn{
+      font-family: var(--gbFont);
+      appearance:none;
+      border:1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.07);
+      color: rgba(234,240,255,.96);
+      border-radius: 12px;
+      padding: 10px 10px;
+      cursor:pointer;
+      font-weight: 400;
+      font-size:9.5px;
+      transition: background .15s ease, border-color .15s ease, transform .08s ease;
+      letter-spacing:.02em;
+    }
+    .linkBtn:hover{background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.26)}
+    .linkBtn:active{transform: translateY(1px)}
+    .mutedBtn{opacity:.75; cursor:not-allowed}
+
+    .holdRing{
+      position:absolute;
+      right:10px;
+      top:10px;
+      width:28px;height:28px;
+      border-radius:99px;
+      border:2px solid rgba(255,255,255,.18);
+      display:none;
+      place-items:center;
+      background: rgba(0,0,0,.20);
+      backdrop-filter: blur(10px);
+    }
+    .holdRing svg{display:block}
+    .holdRing span{
+      position:absolute;
+      font-family: var(--gbFont);
+      font-size:9px;
+      font-weight:400;
+      opacity:.9;
+    }
+    .card.holdable .holdRing{display:grid;}
+
+    /* Modal */
+    .modalOverlay{
+      position:fixed; inset:0;
+      background: rgba(0,0,0,.60);
+      backdrop-filter: blur(10px);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      z-index: 9999;
+      padding: 18px;
+    }
+    .modalOverlay.show{display:flex}
+    .modal{
+      width: min(780px, 100%);
+      border-radius: 24px;
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(10,14,28,.94);
+      box-shadow: 0 30px 90px rgba(0,0,0,.55);
+      overflow:hidden;
+    }
+    .modalTop{
+      padding: 12px 12px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      border-bottom: 1px solid rgba(255,255,255,.12);
+      background: linear-gradient(180deg, rgba(255,255,255,.06) 0%, transparent 100%);
+      font-family: var(--gbFont);
+      font-size: 10px;
+      letter-spacing:.02em;
+      color: rgba(234,240,255,.92);
+    }
+    .xBtn{
+      font-family: var(--gbFont);
+      appearance:none;
+      border:1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.06);
+      color: rgba(234,240,255,.92);
+      border-radius: 12px;
+      padding: 10px 10px;
+      cursor:pointer;
+      font-weight: 400;
+      line-height:1;
+      font-size: 10px;
+      letter-spacing:.02em;
+    }
+    .xBtn:hover{background: rgba(255,255,255,.10)}
+    .modalBody{padding: 14px}
+
+    /* Toast */
+    .toast{
+      position: fixed;
+      left: 50%;
+      bottom: calc(var(--bottomFrameH) + 10px);
+      transform: translateX(-50%);
+      background: rgba(10,14,28,.92);
+      border: 1px solid rgba(255,255,255,.16);
+      border-radius: 14px;
+      padding: 10px 12px;
+      box-shadow: 0 18px 50px rgba(0,0,0,.45);
+      color: rgba(234,240,255,.92);
+      font-family: var(--gbFont);
+      font-size: 10px;
+      display:none;
+      gap:10px;
+      align-items:center;
+      backdrop-filter: blur(12px);
+      z-index: 99999;
+      max-width: min(520px, calc(100vw - 28px));
+      font-weight:400;
+      letter-spacing:.02em;
+    }
+    .toast.show{display:flex; animation: pop .16s ease}
+    @keyframes pop { from {transform: translateX(-50%) translateY(8px); opacity:0} to {transform: translateX(-50%) translateY(0); opacity:1} }
+    .toastDot{width:10px;height:10px;border-radius:99px;background:var(--courtyard-blue); box-shadow:0 0 0 4px rgba(11,90,208,.18)}
+
+    /* bottom frame */
+    .bottomFrame{
+      position:fixed; left:0; right:0; bottom:0;
+      height: var(--bottomFrameH);
+      background: rgba(0,0,0,.78);
+      border-top: 1px solid rgba(255,255,255,.10);
+      backdrop-filter: blur(14px);
+      z-index: 60;
+      display:flex;
+      align-items:center;
+    }
+    .bottomInner{
+      max-width: var(--maxW);
+      margin:0 auto;
+      padding: 10px 18px;
+      width:100%;
+      display:flex;
+      gap:12px;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      color: rgba(234,240,255,.78);
+      font-family: var(--gbFont);
+      font-size: 9px;
+      line-height: 1.25;
+      font-weight:400;
+      letter-spacing:.02em;
+    }
+    /* ✅ footer logo: remove radius + border */
+    .miniLogoImg{
+      width:22px;height:22px;
+      border-radius:0;
+      border:none;
+      object-fit: contain;
+      flex:0 0 auto;
+      background: transparent;
+      opacity: 1;
+      filter: none;
+    }
+    .bottomLeft{display:flex; gap:10px; align-items:center; min-width:min(560px,100%); flex: 1 1 auto;}
+    .bottomLinks{display:flex; gap:10px; align-items:center; flex: 0 0 auto;}
+    .bottomLinks a{
+      color: rgba(234,240,255,.84);
+      text-decoration:none;
+      border-bottom: 1px solid rgba(234,240,255,.22);
+      font-weight:400;
+    }
+    .bottomLinks a:hover{border-bottom-color: rgba(234,240,255,.45)}
+  </style>
+</head>
+
+<body>
+  <div class="topShell">
+    <div class="wrap">
+
+      <div class="infoRow" aria-label="Festival status">
+        <div class="infoItem"><span class="dot" aria-hidden="true"></span><span>Timezone:</span> <span id="tzLabel">Detecting…</span></div>
+        <div class="infoSep" aria-hidden="true"></div>
+        <div class="infoItem"><span class="hl">Next up:</span> <span id="nextUpName">—</span></div>
+        <div class="infoSep" aria-hidden="true"></div>
+        <div class="infoItem"><span class="hl">Starts in:</span> <span id="nextUpCountdown">—</span></div>
+      </div>
+
+     <!--   <div class="heroImg" aria-label="Festival header image">
+      <img
+          src="https://braze-images.com/appboy/communication/assets/image_assets/images/6986116ca1d047007239a21d/original.png?1770393963"
+          alt="Pokémon 30th Anniversary – Courtyard Festival Header"
+        /> 
+      </div>-->
+
+      <header>
+        <div class="brandRow">
+        <!-- <img
+            class="logoImg"
+            src="https://braze-images.com/appboy/communication/assets/image_assets/images/68a8bf1dd5991b0086d25147/original.jpg?1755889436"
+            alt="Courtyard"
+			   style="display:block;text-align:center;"
+          /> -->
+          <div class="titles">
+            <div class="titleArea" align="center"><button class="btn btnBlog" id="blogBtn" type="button" title="Read our blog">
+                <img
+            class="logoImg"
+            src="https://braze-images.com/appboy/communication/assets/image_assets/images/68a8bf1dd5991b0086d25147/original.jpg?1755889436"
+            alt="Courtyard"
+			   style="display:block;text-align:center;"
+          />  RIP NOW
+                </button>
+              <h1 style="color:black;"><br>Pokémon 30th Anniversary<span style="opacity:.75"></span><br>Courtyard Festival Lineup</h1><br> <span style="color:black;text-decoration-color: black;"> Drops, product launches, and daily mystery raffles—formatted like a festival lineup.
+              Times shown in your local time (source times are ET).</span>
+            </div>
+
+          <!--  <div class="sub" align="center" style="text-align: center !important;">
+              Drops, product launches, and daily mystery raffles—formatted like a festival lineup.
+              Times shown in your local time (source times are ET).
+            </div> -->
+
+            <div class="actions">
+              <div class="actionsRow">
+                <button class="btn btnShare" id="shareBtn" type="button" title="Share this lineup">
+                  <span>Share ⌲</span>
+                  <span class="kbd" id="shareHint">COPIES LINK</span>
+                </button>
+
+                <button class="btn btnBlog" id="blogBtn" type="button" title="Read our blog">
+                  Read our Blog
+                </button>
+
+                <button class="btn btnNotify" id="notifyBtn" type="button" title="Notify me via email">
+                  Notify Me
+                </button>
+
+                <!-- ✅ Live feed -->
+                <button class="liveThumbBtn" id="liveThumbBtn" type="button" title="Open live feed in new tab">
+                  <div class="liveThumbInner">
+                    <iframe
+                      id="liveIfrThumb"
+                      title="Live feed preview"
+                      allow="encrypted-media; picture-in-picture"
+                      referrerpolicy="strict-origin-when-cross-origin"
+                      src=""
+                    ></iframe>
+
+                    <div class="liveCropMask" id="liveCropMask" aria-hidden="true">
+                      <div class="cropWindow">
+                        <iframe
+                          id="liveCropIfr"
+                          title="Live feed page crop"
+                          referrerpolicy="strict-origin-when-cross-origin"
+                          src="https://cy-livestream.vercel.app/live/queue-a"
+                        ></iframe>
+                      </div>
+                    </div>
+
+                    <div class="liveOverlayUI" aria-hidden="true">
+                      <span class="livePill"><span class="liveDot"></span>LIVE FEED</span>
+                      <span class="livePlay">
+                        <svg width="16" height="16" viewBox="0 0 24 24">
+                          <path fill="currentColor" d="M8 5.14v14l11-7-11-7Z"></path>
+                        </svg>
+                      </span>
+                    </div>
+                  </div>
+                </button>
+              </div>
+
+              <div class="hint">
+                Get notified when Pokémon 30th Anniversary - Courtyard Festival launches happen!
+              </div>
+
+              <div class="topStages" aria-label="Stages">
+                <div class="stagePill drops"><span class="sw"></span> Drops Stage</div>
+                <div class="stagePill product"><span class="sw"></span> Product Stage</div>
+                <div class="stagePill raffle"><span class="sw"></span> Raffle Stage</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </header>
+    </div>
+  </div>
+
+  <!-- ✅ Divider between top and main content -->
+  <div class="sectionDivider" aria-hidden="true"></div>
+
+  <div class="scrollShell">
+    <div class="timelineScroll" id="timelineScroll" aria-label="Festival lineup">
+      <div id="timeline"></div>
+    </div>
+  </div>
+
+  <!-- Event details modal -->
+  <div class="modalOverlay" id="modalOverlay" role="dialog" aria-modal="true" aria-label="Event details">
+    <div class="modal">
+      <div class="modalTop">
+        <span>Event details</span>
+        <button class="xBtn" type="button" id="modalClose" aria-label="Close">✕</button>
+      </div>
+      <div class="modalBody" id="modalBody"></div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite">
+    <div class="toastDot" aria-hidden="true"></div>
+    <div id="toastText">Copied.</div>
+  </div>
+
+  <div class="bottomFrame" role="contentinfo" aria-label="Footer">
+    <div class="bottomInner">
+      <div class="bottomLeft">
+        <img
+          class="miniLogoImg"
+          src="https://braze-images.com/appboy/communication/assets/image_assets/images/68a8bf1dd5991b0086d25147/original.jpg?1755889436"
+          alt="Courtyard"
+        />
+        <div>
+          <div style="color:rgba(234,240,255,.92)">Courtyard, Inc.</div>
+          <div>228 Park Ave S #38294 · New York, NY 10003</div>
+        </div>
+      </div>
+      <div class="bottomLinks">
+        <a href="https://docs.courtyard.io/courtyard/logistics-and-legal/user-agreements/terms-of-service" target="_blank" rel="noopener">Terms of Service</a>
+        <a href="https://docs.courtyard.io/courtyard/logistics-and-legal/user-agreements/privacy-policy" target="_blank" rel="noopener">Privacy Policy</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const YEAR = 2026;
+
+    // Provided times are correct for ET; we store as absolute instants (-05:00 for Feb).
+    const NOTIFY_URL = "https://example.com/email-capture";
+    const BLOG_URL = "https://courtyard.io"; // replace with actual blog URL
+    const CANONICAL_SHARE_URL = null;
+
+    // ✅ Live feed link
+    const LIVE_URL = "https://cy-livestream.vercel.app/live/queue-a";
+
+    // Optional YouTube preview (if you ever want to restore). Leave null to use the cropped webpage preview.
+    const YT_PREVIEW_URL = null;
+
+    const schedule = [
+      { stageKey:"drops", stageClass:"stage1", items:[
+        { dt:`${YEAR}-02-19T15:00:00-05:00`, title:"Festival Pre-registration Opens", desc:"Get notified as launches happen", href:"#", thumb:"assets/thumbs/drops-01.jpg" },
+        { dt:`${YEAR}-02-23T12:00:00-05:00`, title:"Pikachu + Eevee Pack ($69)", desc:"Limited drop", href:"#", thumb:"assets/thumbs/drops-02.jpg" },
+        { dt:`${YEAR}-02-24T12:00:00-05:00`, title:"Higher End Booster Packs ($99)", desc:"Premium boosters", href:"#", thumb:"assets/thumbs/drops-03.jpg" },
+        { dt:`${YEAR}-02-25T12:00:00-05:00`, title:"Team Rocket Pack ($99)", desc:"Trouble is brewing", href:"#", thumb:"assets/thumbs/drops-04.jpg" },
+        { dt:`${YEAR}-02-26T12:00:00-05:00`, title:"Dragon Pack ($99)", desc:"Fire-breathing favorites", href:"#", thumb:"assets/thumbs/drops-05.jpg" },
+        { dt:`${YEAR}-02-27T12:00:00-05:00`, title:"Vintage Pack: Where It All Started ($199)", desc:"A nod to the classics", href:"#", thumb:"assets/thumbs/drops-06.jpg" },
+      ]},
+      { stageKey:"product", stageClass:"stage2", items:[
+        { dt:`${YEAR}-02-19T15:00:00-05:00`, title:"Collection Portfolio Tracker", desc:"Track the growth of your cards’ value!", href:"#", thumb:"assets/thumbs/product-01.jpg" },
+        { dt:`${YEAR}-02-20T09:00:00-05:00`, title:"Mystery Announcement", desc:"Watch out for an all-new vending machine 👀", href:"#", thumb:"assets/thumbs/product-02.jpg" },
+        { dt:`${YEAR}-02-23T12:00:00-05:00`, title:"100% FMV buyback offers kick off", desc:"Lasts throughout the festival", href:"#", thumb:"assets/thumbs/product-03.jpg" },
+        { dt:`${YEAR}-02-24T04:00:00-05:00`, title:"30th Anniversary-themed Quests kick off", desc:"Lasts through 3/2", href:"#", thumb:"assets/thumbs/product-04.jpg" },
+      ]},
+      { stageKey:"raffle", stageClass:"stage3", items:[
+        { dt:`${YEAR}-02-19T13:00:00-05:00`, title:"Raffle 1: 2021 E•••e H•••••s #089 L•••eon VMAX", desc:"Holo (BGS 10 PRISTINE)", href:"#", thumb:"assets/thumbs/raffle-01.jpg" },
+        { dt:`${YEAR}-02-20T13:00:00-05:00`, title:"Raffle 2: 2007 P•••mon EX P•••r K•••ers #101 J•••on", desc:"Holo Gold Star (PSA 8 NM-MT)", href:"#", thumb:"assets/thumbs/raffle-02.jpg" },
+        { dt:`${YEAR}-02-21T13:00:00-05:00`, title:"Raffle 3: 2025 P•••mon P•••sm•••c E•••u•••ons #155 E•••on EX", desc:"Holo SIR (PSA 10 GEM MINT)", href:"#", thumb:"assets/thumbs/raffle-03.jpg" },
+        { dt:`${YEAR}-02-22T13:00:00-05:00`, title:"Raffle 4: 2019 S•• & M••n U•••oken B•••ds #205 G•••evoir & S•••eon GX", desc:"Holo Full Art (PSA 9 MINT)", href:"#", thumb:"assets/thumbs/raffle-04.jpg" },
+        { dt:`${YEAR}-02-23T13:00:00-05:00`, title:"Raffle 5: 2021 S•••d & S•••ld F•••ion S•••ke #270 E•••on VMAX", desc:"Secret Full Art (PSA 10 GEM MINT)", href:"#", thumb:"assets/thumbs/raffle-05.jpg" },
+        { dt:`${YEAR}-02-24T13:00:00-05:00`, title:"Raffle 6: 2024 S••••r E•••tric B•••ker #132 P•••chu EX", desc:"Special Art Rare (PSA 10 GEM MINT)", href:"#", thumb:"assets/thumbs/raffle-06.jpg" },
+        { dt:`${YEAR}-02-25T13:00:00-05:00`, title:"Raffle 7: 2024 T•••astal F•••t EX #217 U•••eon EX", desc:"Special Art Rare (PSA 10 GEM MINT)", href:"#", thumb:"assets/thumbs/raffle-07.jpg" },
+        { dt:`${YEAR}-02-26T13:00:00-05:00`, title:"Raffle 8: 2021 E•••ving S•••es #209 G•••eon VMAX", desc:"Secret Full Art (PSA 10 GEM MINT)", href:"#", thumb:"assets/thumbs/raffle-08.jpg" },
+        { dt:`${YEAR}-02-27T13:00:00-05:00`, title:"Raffle 9: 2025 S•••••• Promo #173 E•••e", desc:"Prismatic Evolutions PC ETB (PSA 10 GEM MINT)", href:"#", thumb:"assets/thumbs/raffle-09.jpg" },
+        { dt:`${YEAR}-02-28T13:00:00-05:00`, title:"Raffle 10: 2002 L•••ndary C•••ection #9 D••• V•••eon", desc:"Reverse Foil (PSA 7 NM)", href:"#", thumb:"assets/thumbs/raffle-10.jpg" },
+      ]},
+    ];
+
+    const tzLabel = document.getElementById("tzLabel");
+    const nextUpName = document.getElementById("nextUpName");
+    const nextUpCountdown = document.getElementById("nextUpCountdown");
+    const timeline = document.getElementById("timeline");
+    const timelineScroll = document.getElementById("timelineScroll");
+
+    let USER_TZ = "UTC";
+    let fmtDayLong, fmtDayShort, fmtTimeWithZone, fmtDayKey;
+
+    async function detectTimezoneBestEffort(){
+      // IP-based is best-effort; fallback to browser timezone if blocked.
+      try{
+        const r = await fetch("https://ipapi.co/json/", { cache: "no-store" });
+        if (r.ok){
+          const j = await r.json();
+          if (j && j.timezone) return j.timezone;
+        }
+      }catch(e){}
+      try{
+        const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        if (tz) return tz;
+      }catch(e){}
+      return "UTC";
+    }
+
+    function buildFormatters(){
+      fmtDayLong = new Intl.DateTimeFormat(undefined, { timeZone: USER_TZ, weekday:"long", month:"long", day:"numeric" });
+      fmtDayShort = new Intl.DateTimeFormat(undefined, { timeZone: USER_TZ, month:"numeric", day:"numeric" });
+      fmtTimeWithZone = new Intl.DateTimeFormat(undefined, { timeZone: USER_TZ, hour:"numeric", minute:"2-digit", timeZoneName:"short" });
+      fmtDayKey = new Intl.DateTimeFormat("en-CA", { timeZone: USER_TZ, year:"numeric", month:"2-digit", day:"2-digit" });
+      tzLabel.textContent = USER_TZ;
+    }
+
+    function parseDate(s){ return new Date(s); }
+    function formatWhenLocal(date){
+      try{
+        const d = fmtDayShort.format(date);
+        const t = fmtTimeWithZone.format(date);
+        return `${d} · ${t}`;
+      }catch{
+        return date.toLocaleString();
+      }
+    }
+
+    function msToParts(ms){
+      const s = Math.max(0, Math.floor(ms/1000));
+      const days = Math.floor(s / 86400);
+      const hrs  = Math.floor((s % 86400) / 3600);
+      const mins = Math.floor((s % 3600) / 60);
+      const secs = s % 60;
+      return {days, hrs, mins, secs};
+    }
+    function partsToString({days, hrs, mins, secs}){
+      const hh = String(hrs).padStart(2,"0");
+      const mm = String(mins).padStart(2,"0");
+      const ss = String(secs).padStart(2,"0");
+      return days > 0 ? `${days}d ${hh}:${mm}:${ss}` : `${hh}:${mm}:${ss}`;
+    }
+
+    const LIVE_WINDOW_MS = 45 * 60 * 1000;
+    function statusFor(now, start){
+      if (now < start) return {type:"soon", label:"UP NEXT"};
+      if (now >= start && now <= new Date(start.getTime() + LIVE_WINDOW_MS)) return {type:"live", label:"LIVE"};
+      return {type:"done", label:"ENDED"};
+    }
+
+    function isLikelyDesktop(){
+      const hasTouch = ("maxTouchPoints" in navigator) && navigator.maxTouchPoints > 0;
+      const coarse = window.matchMedia && window.matchMedia("(pointer: coarse)").matches;
+      return !hasTouch && !coarse;
+    }
+
+    function toast(msg){
+      const toastEl = document.getElementById("toast");
+      const toastText = document.getElementById("toastText");
+      toastText.textContent = msg;
+      toastEl.classList.add("show");
+      clearTimeout(toastEl._t);
+      toastEl._t = setTimeout(() => toastEl.classList.remove("show"), 2400);
+    }
+
+    // ✅ Improved scroll sizing: keep cards usable on small screens
+    function setScrollHeight(){
+      const topShell = document.querySelector(".topShell");
+      const topH = topShell ? topShell.getBoundingClientRect().height : 360;
+      const bottomH = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--bottomFrameH")) || 68;
+      const dividerH = document.querySelector(".sectionDivider")?.getBoundingClientRect().height || 0;
+      const vh = window.innerHeight || 800;
+
+      const isMobile = window.matchMedia && window.matchMedia("(max-width: 860px)").matches;
+      const padding = isMobile ? 6 : 10;
+
+      const raw = Math.floor(vh - topH - bottomH - dividerH - padding);
+      timelineScroll.style.height = `${Math.max(isMobile ? 240 : 280, raw)}px`;
+    }
+
+    function groupEventsByDay(){
+      const days = new Map();
+      schedule.forEach(stage => stage.items.forEach(item => {
+        const d = parseDate(item.dt);
+        const dayKey = fmtDayKey.format(d);
+        if (!days.has(dayKey)){
+          days.set(dayKey, { dayKey, anyDate: d, itemsByStageKey: { drops:[], product:[], raffle:[] } });
+        }
+        days.get(dayKey).itemsByStageKey[stage.stageKey].push({ ...item, stageKey: stage.stageKey, stageClass: stage.stageClass });
+      }));
+      const out = Array.from(days.values()).sort((a,b) => a.dayKey.localeCompare(b.dayKey));
+      out.forEach(day => Object.keys(day.itemsByStageKey).forEach(k => {
+        day.itemsByStageKey[k].sort((a,b) => parseDate(a.dt) - parseDate(b.dt));
+      }));
+      return out;
+    }
+
+    // Event modal
+    const modalOverlay = document.getElementById("modalOverlay");
+    const modalBody = document.getElementById("modalBody");
+    document.getElementById("modalClose").addEventListener("click", () => { modalOverlay.classList.remove("show"); modalBody.innerHTML=""; });
+    modalOverlay.addEventListener("click", (e) => { if (e.target === modalOverlay){ modalOverlay.classList.remove("show"); modalBody.innerHTML=""; } });
+
+    function openModalFromCard(cardEl){
+      const start = new Date(cardEl.dataset.start);
+      const href = cardEl.dataset.href;
+      const badgeNow = statusFor(new Date(), start);
+      const canOpen = href && href !== "#";
+
+      // Remove GO thumbnail in modal
+      modalBody.innerHTML = `
+        <div style="padding:2px;">
+          <div style="display:flex; gap:12px; align-items:flex-start;">
+            <div style="flex:1; min-width:0;">
+              <div class="when" style="margin-bottom:12px;">
+                <span class="timeChip">${formatWhenLocal(start)}</span>
+                <span class="badge ${badgeNow.type}">${badgeNow.label}</span>
+              </div>
+              <h3 class="title" style="margin:0 0 10px 0;"><span class="hl">${cardEl.dataset.title}</span></h3>
+              <p class="desc" style="font-size:14.5px; margin-top:0;">${cardEl.dataset.desc}</p>
+              <div class="cardActions">
+                <button class="linkBtn" type="button" id="modalOpenLink" ${canOpen ? "" : "disabled"}>${canOpen ? "Open link →" : "Link TBD"}</button>
+                <button class="linkBtn" type="button" id="modalCopyTime">Copy event time</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+      modalOverlay.classList.add("show");
+
+      const modalOpenLink = document.getElementById("modalOpenLink");
+      const modalCopyTime = document.getElementById("modalCopyTime");
+      if (modalOpenLink && canOpen) modalOpenLink.addEventListener("click", () => window.open(href, "_blank", "noopener"));
+      if (modalCopyTime) modalCopyTime.addEventListener("click", async () => {
+        const text = `${cardEl.dataset.title} — ${formatWhenLocal(start)} (${USER_TZ})`;
+        try{ await navigator.clipboard.writeText(text); toast(`COPIED.`); }
+        catch{ toast("CAN’T COPY."); }
+      });
+    }
+
+    function wireCardInteractions(){
+      document.querySelectorAll(".card").forEach(cardEl => {
+        const href = cardEl.dataset.href || "#";
+        const start = new Date(cardEl.dataset.start);
+
+        const openBtn = cardEl.querySelector('[data-openlink="true"]');
+        if (openBtn){
+          if (!href || href === "#"){ openBtn.classList.add("mutedBtn"); openBtn.disabled = true; }
+          else openBtn.addEventListener("click", (e) => { e.stopPropagation(); window.open(href, "_blank", "noopener"); });
+        }
+
+        const copyBtn = cardEl.querySelector('[data-copytime="true"]');
+        if (copyBtn){
+          copyBtn.addEventListener("click", async (e) => {
+            e.stopPropagation();
+            const text = `${cardEl.dataset.title} — ${formatWhenLocal(start)} (${USER_TZ})`;
+            try{ await navigator.clipboard.writeText(text); toast("COPIED."); }
+            catch{ toast("CAN’T COPY."); }
+          });
+        }
+
+        if (!isLikelyDesktop()){
+          cardEl.addEventListener("click", () => openModalFromCard(cardEl));
+          return;
+        }
+
+        let timer=null, raf=null, startTs=0;
+        const prog = cardEl.querySelector('[data-progress="true"]');
+        const resetRing = () => { if (prog) prog.setAttribute("stroke-dasharray","0 100"); };
+        const stop = () => {
+          if (timer) clearTimeout(timer);
+          timer=null;
+          if (raf) cancelAnimationFrame(raf);
+          raf=null; startTs=0; resetRing();
+        };
+        const animate = (ts) => {
+          if (!startTs) startTs = ts;
+          const elapsed = ts - startTs;
+          const pct = Math.max(0, Math.min(100, (elapsed / 2000) * 100));
+          if (prog) prog.setAttribute("stroke-dasharray", `${pct} 100`);
+          if (elapsed < 2000) raf = requestAnimationFrame(animate);
+        };
+
+        cardEl.addEventListener("mouseenter", () => {
+          stop();
+          raf = requestAnimationFrame(animate);
+          timer = setTimeout(() => { stop(); openModalFromCard(cardEl); }, 2000);
+        });
+        cardEl.addEventListener("mouseleave", stop);
+        cardEl.addEventListener("click", () => { stop(); openModalFromCard(cardEl); });
+      });
+    }
+
+    function allEventsFlat(){
+      const out = [];
+      schedule.forEach(stage => stage.items.forEach(i => out.push(i)));
+      return out.sort((a,b) => new Date(a.dt) - new Date(b.dt));
+    }
+
+    function update(){
+      const now = new Date();
+
+      document.querySelectorAll(".card").forEach(cardEl => {
+        const start = new Date(cardEl.dataset.start);
+        const badge = cardEl.querySelector('[data-badge="true"]');
+        const cd = cardEl.querySelector('[data-countdown="true"]');
+
+        const st = statusFor(now, start);
+        if (badge){ badge.className = `badge ${st.type}`; badge.textContent = st.label; }
+        if (cd){
+          if (now < start) { cd.textContent = `T-${partsToString(msToParts(start - now))}`; cd.style.opacity="1"; }
+          else if (st.type === "live") { cd.textContent = "HAPPENING"; cd.style.opacity=".95"; }
+          else { cd.textContent = "—"; cd.style.opacity=".55"; }
+        }
+      });
+
+      const upcoming = allEventsFlat().find(e => new Date(e.dt) > now);
+      if (!upcoming) {
+        nextUpName.textContent = "FESTIVAL COMPLETE";
+        nextUpCountdown.textContent = "—";
+      } else {
+        nextUpName.textContent = upcoming.title;
+        nextUpCountdown.textContent = partsToString(msToParts(new Date(upcoming.dt) - now));
+      }
+    }
+
+    function render(){
+      setScrollHeight();
+      const days = groupEventsByDay();
+      timeline.innerHTML = "";
+
+      days.forEach(day => {
+        const dayEl = document.createElement("section");
+        dayEl.className = "day";
+        dayEl.innerHTML = `
+          <div class="dayHeader">
+            <div>
+              <div class="dayTitle">${fmtDayLong.format(day.anyDate)}</div>
+              <div class="daySub">Festival day lineup · equally spaced cards</div>
+            </div>
+          </div>
+          <div class="dayBody">
+            <div class="cols">
+              <div class="stack" data-stage="drops"></div>
+              <div class="stack" data-stage="product"></div>
+              <div class="stack" data-stage="raffle"></div>
+            </div>
+          </div>
+        `;
+
+        ["drops","product","raffle"].forEach(k => {
+          const stack = dayEl.querySelector(`.stack[data-stage="${k}"]`);
+          const items = (day.itemsByStageKey[k] || []);
+          if (!items.length){
+            stack.classList.add("isEmpty");
+            return;
+          }
+
+          items.forEach(item => {
+            const start = parseDate(item.dt);
+            const openLabel = (!item.href || item.href==="#") ? "Link TBD" : "Open link →";
+            const desktopHold = isLikelyDesktop();
+
+            const card = document.createElement("div");
+            card.className = `card ${item.stageClass}${desktopHold ? " holdable" : ""}`;
+            card.dataset.start = start.toISOString();
+            card.dataset.title = item.title;
+            card.dataset.desc = item.desc;
+            card.dataset.href = item.href || "#";
+
+            card.innerHTML = `
+              <div class="thumb" aria-hidden="true">
+                <div class="goBtn"><span>GO</span></div>
+              </div>
+              <div class="meta">
+                <div class="when">
+                  <span class="timeChip">${formatWhenLocal(start)}</span>
+                  <span class="badge soon" data-badge="true">UP NEXT</span>
+                  <span class="badge" data-countdown="true">—</span>
+                </div>
+                <h3 class="title"><span class="hl">${item.title}</span></h3>
+                <p class="desc">${item.desc}</p>
+                <div class="cardActions">
+                  <button class="linkBtn" type="button" data-openlink="true">${openLabel}</button>
+                  <button class="linkBtn" type="button" data-copytime="true">Copy event time</button>
+                </div>
+              </div>
+              ${desktopHold ? `
+                <div class="holdRing" aria-hidden="true">
+                  <svg width="28" height="28" viewBox="0 0 36 36">
+                    <path d="M18 2 a 16 16 0 1 1 0 32 a 16 16 0 1 1 0 -32"
+                      fill="none" stroke="rgba(255,255,255,.20)" stroke-width="3.5"></path>
+                    <path data-progress="true"
+                      d="M18 2 a 16 16 0 1 1 0 32 a 16 16 0 1 1 0 -32"
+                      fill="none" stroke="rgba(11,90,208,1)" stroke-width="3.5"
+                      stroke-linecap="round" stroke-dasharray="0 100"></path>
+                  </svg>
+                  <span>2s</span>
+                </div>
+              ` : ``}
+            `;
+            stack.appendChild(card);
+          });
+        });
+
+        timeline.appendChild(dayEl);
+      });
+
+      wireCardInteractions();
+      update();
+    }
+
+    // Share + Notify + Blog
+    const shareBtn = document.getElementById("shareBtn");
+    const shareHint = document.getElementById("shareHint");
+    const notifyBtn = document.getElementById("notifyBtn");
+    const blogBtn = document.getElementById("blogBtn");
+
+    function currentShareUrl(){ return CANONICAL_SHARE_URL || window.location.href; }
+
+    shareHint.textContent = (navigator.share && !isLikelyDesktop())
+      ? "MOBILE"
+      : (navigator.clipboard ? "COPIES LINK" : "SHARE");
+
+    shareBtn.addEventListener("click", async () => {
+      const url = currentShareUrl();
+      const payload = {
+        title:"Pokémon 30th Anniversary – Courtyard Festival Lineup",
+        text:"Check out the Courtyard Festival Lineup for Pokémon’s 30th Anniversary.",
+        url
+      };
+
+      if (navigator.share && !isLikelyDesktop()) {
+        try {
+          await navigator.share(payload);
+          if (navigator.clipboard) { try { await navigator.clipboard.writeText(url); } catch {} }
+          toast("SHARED!");
+          return;
+        } catch {}
+      }
+      if (navigator.clipboard) {
+        try { await navigator.clipboard.writeText(url); toast("LINK COPIED."); }
+        catch { toast("CAN’T COPY."); }
+      } else toast("NO CLIPBOARD.");
+    });
+
+    notifyBtn.addEventListener("click", () => window.open(NOTIFY_URL, "_blank", "noopener"));
+    blogBtn.addEventListener("click", () => window.open(BLOG_URL, "_blank", "noopener"));
+
+    // ✅ Live feed: click opens new tab to LIVE_URL (fixed & hardened)
+    const liveThumbBtn = document.getElementById("liveThumbBtn");
+    const liveIfrThumb = document.getElementById("liveIfrThumb");
+    const liveCropMask = document.getElementById("liveCropMask");
+    const liveCropIfr = document.getElementById("liveCropIfr");
+
+    function hardenLiveFeedNavigation(){
+      // Add a native <a> overlay so navigation happens even if JS events get swallowed.
+      const existing = liveThumbBtn.querySelector(".liveLinkOverlay");
+      if (existing) existing.remove();
+
+      const a = document.createElement("a");
+      a.className = "liveLinkOverlay";
+      a.href = LIVE_URL;
+      a.target = "_blank";
+      a.rel = "noopener";
+      a.setAttribute("aria-label", "Open live feed in new tab");
+      liveThumbBtn.appendChild(a);
+
+      const open = () => {
+        try {
+          const w = window.open(LIVE_URL, "_blank", "noopener");
+          if (!w) window.location.href = LIVE_URL;
+        } catch(e){
+          window.location.href = LIVE_URL;
+        }
+      };
+
+      // Capture multiple event types to avoid other handlers preventing navigation.
+      liveThumbBtn.addEventListener("pointerup", (e) => { e.preventDefault(); open(); }, { passive:false });
+      liveThumbBtn.addEventListener("click", (e) => { e.preventDefault(); open(); }, { passive:false });
+    }
+
+    function initLivePreview(){
+      if (YT_PREVIEW_URL){
+        liveIfrThumb.src = YT_PREVIEW_URL;
+        liveCropMask.classList.remove("show");
+      } else {
+        liveIfrThumb.src = "about:blank";
+        liveCropMask.classList.add("show");
+
+        liveCropIfr.addEventListener("load", () => {
+          const big = 1000;
+          const win = liveCropMask.querySelector(".cropWindow");
+          const w = win ? win.clientWidth : 200;
+          const h = win ? win.clientHeight : 200;
+          const tx = Math.round((big - w) / 2);
+          const ty = Math.round((big - h) / 2);
+          liveCropIfr.style.transform = `translate(${-tx}px, ${-ty}px)`;
+        }, { once:true });
+      }
+    }
+
+    async function init(){
+      USER_TZ = await detectTimezoneBestEffort();
+      buildFormatters();
+      initLivePreview();
+      hardenLiveFeedNavigation();
+      setScrollHeight();
+      render();
+      update();
+      setInterval(update, 1000);
+    }
+
+    window.addEventListener("resize", setScrollHeight);
+    window.addEventListener("load", setScrollHeight);
+    init();
+  </script>
+</body>
+</html>
